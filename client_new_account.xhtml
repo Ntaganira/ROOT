@@ -23,16 +23,16 @@
 
         <style>
             .input-group-text {
-                background: #0ab16c7a !important;
-                color: white !important;
-                border: 0 !important;
+                background: #ffffff !important;
+                color: black !important;
+                border: solid 1px #cac7c7 !important;
                 border-radius: 0.25rem 0 0 0.25rem !important;
             }
         </style>
     </h:head>
 
     <body>
-  <section class="header" >
+        <section class="header" >
             <div class="sub-header">
                 <div class="container">
                     <div class="row">
@@ -52,7 +52,7 @@
 
                         <div class="col-md-6"><br/>
                             <div class="search-box col-md-12">               
-                                 <h:form>
+                                <h:form>
                                     <div class="input-group mb-12">
                                         <div class="input-group-prepend">
                                             <h:selectOneMenu value="#{market.keySearch}" class="btn btn-light">
@@ -126,97 +126,106 @@
 
         <p:messages autoUpdate="true" closable="true"/>
         <div class="card">
-            <article class="card-body mx-auto" style="max-width: 600px;
-                     background: #1e435e;
-                     margin: 50px 0 1px 0;">
+            <article class="card-body mx-auto" style="margin: 10px 0 1px 0;">
                 <h:form  enctype="multipart/form-data">
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> Logo | Photo </span>
-                        </div>
-                        <h:inputFile class="form-control" required="true" value="#{market.image}"/>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                        </div>
-                        <p:inputText required="true" styleClass="form-control" value="#{market.user.tinNumber}" placeholder="TIN Number"  type="tin"/> 
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-home"></i> </span>
-                        </div>
-                        <p:inputText required="true" styleClass="form-control" value="#{market.user.businessName}" placeholder="Business Name"  type="bname"/>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                        </div>
-                        <p:inputText required="true" styleClass="form-control" value="#{market.user.email}"  placeholder="E-mail"  type="email"/>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
-                        </div>
-                        <select class="custom-select" style="max-width: 120px;">
-                            <option selected="">+250</option>
-                        </select>
-                        <p:inputText required="true" styleClass="form-control" value="#{market.user.phone}"  placeholder="phone number"  type="phone"/>
-                    </div> <!-- form-group// -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> Logo | Photo </span>
+                                </div>
+                                <h:inputFile class="form-control" required="true" value="#{market.image}"/>
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <p:inputText required="true" styleClass="form-control" value="#{market.createUser.tinNumber}" placeholder="TIN Number"  type="tin"/> 
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-home"></i> </span>
+                                </div>
+                                <p:inputText required="true" styleClass="form-control" value="#{market.createUser.businessName}" placeholder="Business Name"  type="bname"/>
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                                </div>
+                                <p:inputText required="true" styleClass="form-control" value="#{market.createUser.email}"  placeholder="E-mail"  type="email"/>
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                                </div>
+                                <select class="custom-select" style="max-width: 120px;">
+                                    <option selected="">+250</option>
+                                </select>
+                                <p:inputText required="true" styleClass="form-control" value="#{market.createUser.phone}"  placeholder="phone number"  type="phone"/>
+                            </div> <!-- form-group// -->
 
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
-                        <p:inputText required="true" styleClass="form-control" value="#{market.user.password}"  placeholder="Password"  type="password"/>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                        </div>
-                        <p:inputText required="true" styleClass="form-control" value="#{market.confirmPassword}"  placeholder="Password"  type="password"/>
-                    </div> <!-- form-group// -->
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> Province</span>
-                        </div>
-                        <h:selectOneMenu id="province"  value="#{market.selectedProvince}" styleClass="disabled form-control">
-                            <f:selectItems value="#{market.provinces}" var="pr" itemLabel="#{pr.name}" itemValue="#{pr.name}"/>
-                            <p:ajax listener="#{market.filterDistricts()}" update="district"/>
-                        </h:selectOneMenu>
-                    </div> <!-- form-group end.// -->
 
 
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> District </span>
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <p:inputText required="true" styleClass="form-control" value="#{market.createUser.password}"  placeholder="Password"  type="password"/>
+                            </div> <!-- form-group// -->
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <p:inputText required="true" styleClass="form-control" value="#{market.confirmPassword}"  placeholder="Password"  type="password"/>
+                            </div> <!-- form-group// -->
+
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> Province</span>
+                                </div>
+                                <h:selectOneMenu id="province"  value="#{market.selectedProvince}" styleClass="disabled form-control">
+                                    <f:selectItems value="#{market.provinces}" var="pr" itemLabel="#{pr.name}" itemValue="#{pr.name}"/>
+                                    <p:ajax listener="#{market.filterDistricts()}" update="district"/>
+                                </h:selectOneMenu>
+                            </div> <!-- form-group end.// -->
+
+
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> District </span>
+                                </div>
+                                <h:selectOneMenu id="district"  value="#{market.selectedDistrict}" styleClass="disabled form-control">
+                                    <f:selectItem itemLabel=" Select District " noSelectionOption="false"/>
+                                    <f:selectItems value="#{market.districts}" var="dis" itemLabel="#{dis.name}" itemValue="#{dis.name}"/>
+                                    <p:ajax listener="#{market.filterSectors()}" update="sector"/>
+                                </h:selectOneMenu>
+                            </div> <!-- form-group end.// -->
+
+
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> Sector</span>
+                                </div>
+                                <h:selectOneMenu id="sector"  value="#{market.selectedSector}" styleClass="disabled form-control">
+                                    <f:selectItem itemLabel=" Select Sector " noSelectionOption="false"/>
+                                    <f:selectItems value="#{market.sectors}" var="sec" itemLabel="#{sec.name}" itemValue="#{sec.name}"/>
+                                </h:selectOneMenu>
+                            </div> <!-- form-group end.// -->
                         </div>
-                        <h:selectOneMenu id="district"  value="#{market.selectedDistrict}" styleClass="disabled form-control">
-                            <f:selectItem itemLabel=" Select District " noSelectionOption="false"/>
-                            <f:selectItems value="#{market.districts}" var="dis" itemLabel="#{dis.name}" itemValue="#{dis.name}"/>
-                            <p:ajax listener="#{market.filterSectors()}" update="sector"/>
-                        </h:selectOneMenu>
-                    </div> <!-- form-group end.// -->
-
-
-                    <div class="form-group input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"> Sector</span>
-                        </div>
-                        <h:selectOneMenu id="sector"  value="#{market.selectedSector}" styleClass="disabled form-control">
-                            <f:selectItem itemLabel=" Select Sector " noSelectionOption="false"/>
-                            <f:selectItems value="#{market.sectors}" var="sec" itemLabel="#{sec.name}" itemValue="#{sec.name}"/>
-                        </h:selectOneMenu>
-                    </div> <!-- form-group end.// -->
-
+                    </div>
                     <div class="form-group">
-                        <h:commandLink action="#{market.newClient()}" styleClass="btn btn-sm btn-primary" style="line-height: 3.5;
+                        <h:commandLink action="#{market.newClient()}" styleClass="btn btn-sm btn-primary" style="
+                                       line-height: 3.5;
                                        margin: 10px 0;
                                        border: 0;
                                        border-radius: 0px;
                                        padding: 0 60px;
-                                       background: #0ab16c;
-                                       letter-spacing: 5px;">Register</h:commandLink>
+                                       background: #ffb50e;
+                                       letter-spacing: 5px;
+                                       color: black;
+                                       font-weight: 700;">Register</h:commandLink>
                     </div> <!-- form-group// -->      
                 </h:form>
             </article>

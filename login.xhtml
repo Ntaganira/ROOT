@@ -19,8 +19,8 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/> 
         <link rel="stylesheet" href="css/10062020.css"/>
         <link rel="stylesheet" href="css/10062020_slick.css"/>
-        
-        
+
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
         <!--This is for advertisement ads-->
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -49,7 +49,7 @@
 
                         <div class="col-md-6"><br/>
                             <div class="search-box col-md-12">               
-                                 <h:form>
+                                <h:form>
                                     <div class="input-group mb-12">
                                         <div class="input-group-prepend">
                                             <h:selectOneMenu value="#{market.keySearch}" class="btn btn-light">
@@ -65,13 +65,13 @@
                             </div>
                             <br/>
                         </div>
-                       <div class="col-md-4">
-                                <section class="customer-logos slider">
-                                    <c:forEach var="item" items="#{advertismentModal.advertisments}">
-                                        <a href="#{item.url}"><div class="slide"><img src="image/#{item.img}"/></div></a>
-                                    </c:forEach>
-                                </section>
-                            </div>
+                        <div class="col-md-4">
+                            <section class="customer-logos slider">
+                                <c:forEach var="item" items="#{advertismentModal.advertisments}">
+                                    <a href="#{item.url}"><div class="slide"><img src="image/#{item.img}"/></div></a>
+                                </c:forEach>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,15 +146,17 @@
                                             </div>
                                             <p:password value="#{market.password}" styleClass="form-control input_pas"  placeholder="password"/>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customControlInline"/>
-                                                <label class="custom-control-label" for="customControlInline">Remember me</label>
-                                            </div>
-                                        </div>
+
                                         <div class="d-flex justify-content-center mt-3 login_container">
                                             <h:commandLink action="#{market.login()}" styleClass="btn login_btn">Login</h:commandLink>
 
+                                        </div>
+                                        <br/>
+                                        <p></p>
+                                        <div class="form-group">
+                                            <div class="">
+                                                <h:commandLink style="color: white;"  action="resetpassword.xhtml">Forget password</h:commandLink>
+                                            </div>
                                         </div>
                                     </h:form>
                                 </div>
@@ -181,7 +183,7 @@
                 </div>
             </div>
         </div>
-        
+
     </body>
 </html>
 
