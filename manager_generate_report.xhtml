@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>WholeSaler - Dashboard</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/datepicker3.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+        <p:ajaxStatus onstart="#{market.check()}"/>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/Market/manager_dashboard.xhtml"><span>imar </span>group</a>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <img src="image/#{market.user1.image}" class="img-responsive" alt=""/>
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">#{market.user1.firstName}</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+
+            <h:form>
+                <ul class="nav menu">
+                    <li class="">
+                        <a href="manager_dashboard.xhtml"><em class="fa fa-dashboard">&nbsp;</em>Dashboard</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_business_products.xhtml"><em class="fa fa-list">&nbsp;</em>Current Stock</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_all_orders.xhtml"><em class="fa fa-list">&nbsp;</em>All orders</a>
+                    </li>
+
+                    <li class="">
+                        <h:commandLink action="#{market.pendingNav()}"><em class="fa fa-list">&nbsp;</em> Pending Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.approvedNav()}"><em class="fa fa-list">&nbsp;</em> Approved Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.deliveryNav()}"><em class="fa fa-list">&nbsp;</em> Delivered Orders</h:commandLink>
+                    </li>
+                    <li class="active">
+                        <a href="manager_generate_report.xhtml"><em class="fa fa-print">&nbsp;</em>Reports</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em class="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+
+            </h:form>
+        </div><!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="#">
+                            <em class="fa fa-home"></em>
+                        </a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div><!--/.row-->
+
+
+            <div class="row">
+                <h1>Generate Report <i class="fa fa-print"></i></h1>
+                <p:messages closable="true"/>
+                <div role="tabpanel">
+                    <div class="col-sm-3 col-md-3">
+                        <ul class="nav nav-pills brand-pills nav-stacked" role="tablist">
+                            <li role="presentation" class="brand-nav active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab"> Approved</a></li>
+                            <li role="presentation" class="brand-nav"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"> Pending</a></li>
+                            <li role="presentation" class="brand-nav"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">Best Clients</a></li>
+                            <li role="presentation" class="brand-nav"><a href="#tab4" aria-controls="tab4" role="tab" data-toggle="tab">Best Sold Product</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-9 col-md-9">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="tab1">
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        Approved
+                                        <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                                    <div class="panel-body">
+                                        <h:form>
+                                            <p:calendar value="#{market.startDate}" placeholder="Starting date"/><br/>
+                                            <p:calendar value="#{market.endDate}" placeholder="Ending date"/> &nbsp; &nbsp;&nbsp; 
+                                            <h:commandLink value="print" action="#{market.printManagerApprovedReport()}" styleClass="btn btn-sm btn-danger"/>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="tab2">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        Pending
+                                        <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                                    <div class="panel-body">
+                                        <h:form>
+                                            <p:calendar value="#{market.startDate}" placeholder="Starting date"/><br/>
+                                            <p:calendar value="#{market.endDate}" placeholder="Ending date"/> &nbsp; &nbsp;&nbsp; 
+                                            <h:commandLink value="print" action="#{market.printManagerPendingReport()}" styleClass="btn btn-sm btn-danger"/>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="tab3">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        List of Best clients
+                                        <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                                    <div class="panel-body">
+                                        <h:form>
+                                            <h:commandLink value="print" action="#{market.bestClient()}" styleClass="btn btn-sm btn-danger"/>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="tab4">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        Best Sold product
+                                        <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                                    <div class="panel-body">
+                                        <h:form>
+                                            <h:commandLink value="print" action="#{market.bestProductSold()}" styleClass="btn btn-sm btn-danger"/>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.row-->
+        </div>	<!--/.main-->
+
+        <script src="js/bootstrap.min.js"></script>
+
+    </h:body>
+</html>
+

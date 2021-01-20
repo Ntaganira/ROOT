@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Retailer - Dashboard</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/datepicker3.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+        <p:ajaxStatus onstart="#{market.check()}"/>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/Market/client_dashboard.xhtml"><span>imar </span>group</a>
+                    
+                    
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <img src="image/#{market.user1.image}" styleClass="img-responsive" alt=""/>
+                </div>
+                <div class="profile-usertitle">
+                    <div styleClass="profile-usertitle-name">#{market.user1.firstName}</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+            <h:form>
+                <ul class="nav menu">
+                    <li class="">
+                        <a href="client_dashboard.xhtml"><em class="fa fa-dashboard">&nbsp;</em>Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <a href="client_orders.xhtml"><em class="fa fa-list">&nbsp;</em> All My Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_pending_orders.xhtml"><em class="fa fa-list">&nbsp;</em> Pending Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_approved_orders.xhtml"><em class="fa fa-ticket">&nbsp;</em> Approved Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_delivered.xhtml"><em class="fa fa-ticket">&nbsp;</em> Delivered Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_new_order.xhtml"><em class="fa fa-ticket">&nbsp;</em> Make new Order</a>
+                    </li>
+                      <li class="">
+                        <a href="client_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em class="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+
+            </h:form>
+        </div><!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="#">
+                            <em class="fa fa-home"></em>
+                        </a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div><!--/.row--><br/>
+
+            <div class="panel panel-container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-home color-blue"></em>
+                                <div styleClass="large">#{market.businesses.size()}</div>
+                                <div class="text-muted">COmpanies</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-blue panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-comments color-orange"></em>
+                                <div class="large">52</div>
+                                <div class="text-muted">Comments</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-orange panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-users color-teal"></em>
+                                <div class="large">45</div>
+                                <div class="text-muted">New Users</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-red panel-widget ">
+                            <div class="row no-padding"><em class="fa fa-xl fa-search color-red"></em>
+                                <div styleClass="large">#{market.order.id}</div>
+                                <div class="text-muted">Page Views</div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.row-->
+            </div>
+            <!--/.row-->
+
+            <div class="row">
+                <p:messages closable="true"/>
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            List Of Products 
+                            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body">
+                            <h:form>
+                                <h:commandLink action="#{market.printClientInvoice()}" style="float: right;" styleClass="btn btn-danger "><i class="fa fa-print"></i> Get Invoice</h:commandLink>
+                            </h:form>
+                            <h:dataTable styleClass="table table-striped" value="#{market.orderProducts}" var="product">
+                                <h:column>
+                                    <f:facet name="header">Name</f:facet>
+                                        #{product.name}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Price/unit</f:facet>
+                                        #{product.price}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Quantity</f:facet>
+                                        #{product.quantity}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Amount</f:facet>
+                                        #{product.totalAmount()}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Supplier</f:facet>
+                                        #{product.product.business.name}
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.row-->
+
+
+        </div>	<!--/.main-->
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <script src="js/chart-data.js"></script>
+        <script src="js/easypiechart.js"></script>
+        <script src="js/easypiechart-data.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/custom.js"></script>
+        <script>
+            window.onload = function () {
+                var chart1 = document.getElementById("line-chart").getContext("2d");
+                window.myLine = new Chart(chart1).Line(lineChartData, {
+                    responsive: true,
+                    scaleLineColor: "rgba(0,0,0,.2)",
+                    scaleGridLineColor: "rgba(0,0,0,.05)",
+                    scaleFontColor: "#c5c7cc"
+                });
+            };
+        </script>
+    </h:body>
+</html>
+

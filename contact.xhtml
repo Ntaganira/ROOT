@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Kigali trader</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <style>
+            .upper{
+                background: #165729;
+                width: 90%;
+                margin: 0 auto;
+                height: 40px;
+                color: #fff;
+            }
+            .upper .first{
+                float: left;
+                margin-left: -40px;
+            }
+            .upper .second{
+                float: right;
+            }
+            ul li{
+                display: inline;
+                margin: 10px;
+            }
+            .middle{
+
+                width: 90%;
+                margin: 0 auto;
+                height: 90px;
+                color: #fff;
+            }
+            .down{
+                background: #ffd10e;
+                width: 90%;
+                margin: 0 auto;
+                height: 40px;
+                color: #fff;
+            }
+            a{
+                color: inherit;
+                text-decoration: none;
+                line-height: inherit;
+                cursor: pointer;
+            }
+            .container1{
+                background: #ddd;
+                width:  90%;
+                margin: 0 auto;
+                height: 500px;
+            }
+            .advert_container {
+                padding-top: 4%;
+                width: 90%;
+                margin: auto;
+                margin-top: 4px;
+                display: flex;
+            }
+            .card {
+                width: 20%;
+                flex: 1;
+                margin: 1%;
+            }
+        </style>
+    </h:head>
+    <body>
+        <div>
+            <div class="heade">
+                <div class="upper">
+                    <div style="width: 76%; margin: 0 auto;">
+                        <ul class="first">
+                            <li>0788335917</li>
+                            <li>0785498236</li>
+                        </ul>
+                        <ul class="second">
+                            <li>Currency USD</li>
+                            <li>English</li>
+                            <li>My Account</li>
+                            <li>Vendors</li>
+                            <li>Affliates Area</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="middle">
+                    <div style="width: 76%; margin: 0 auto;">
+                        <div class="one" style="float:left">
+                            <img src="img/logo.PNG"/>
+                        </div>
+                        <div class="two" style="float: right; margin-top: 10px">
+<!--                            <input type="text"/>
+                            <input type="text"/>-->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="down">
+                    <ul  style="margin-left: 8%"> 
+                        <li><a href="index.xhtml"> Home</a></li>
+                        <li><a href="login.xhtml"> Login</a></li>
+                        <li><a href="#"> About Us</a></li>
+                        <li><a href="login.xhtml"> Login</a></li>
+                        <li><a href="client_new_account.xhtml"> Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container1" style="background: #ddd">
+                <div style="height: 460px; width: 78%; margin: 0 auto;">
+                    <img src="img/bg_yirangarama2.jpg" style="height: 100%; background: rgba(200,200,200,0.3); width: 100%"/>
+                </div>
+                <p:dataGrid value="#{market.getProductsToAdvertises()}" var="product" columns="3">
+                    <p:column>
+                        <div class="advert_container">
+                            <div class="card">
+                                <!--<img src="img/u7.jpg" class="card-img-top" alt="..."/>-->
+                                <img src="img/#{product.image}" class="card-img-top"/>
+                                <div class="card-body">
+                                    <h5 styleClass="card-title">#{product.name}</h5>
+                                    <p styleClass="card-text">#{product.description}</p>
+                                    <p styleClass="card-text">#{product.price}</p>
+                                    <a href="#" class="btn btn-primary">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </p:column>
+                </p:dataGrid>
+
+            </div>
+        </div>
+    </body>
+</html>

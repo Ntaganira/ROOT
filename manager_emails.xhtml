@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>IMAR | WEB | Dashboard</title>
+        <link rel="icon" href="images/logo.png" type="image/icon type"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+        <p:ajaxStatus onstart="#{market.check()}"/>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/Market/manager_dashboard.xhtml"><span>imar </span>group</a>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <a href="client_profile_1.xhtml"><img src="image/#{market.user1.image}" class="img-responsive" alt=""/></a>
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">#{market.user1.firstName}</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+
+            <h:form>
+                <ul class="nav menu">
+                    <li class="active">
+                        <a href="manager_dashboard.xhtml"><em class="fa fa-dashboard">&nbsp;</em>Dashboard</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_business_products.xhtml"><em class="fa fa-list">&nbsp;</em>Current Stock</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_all_orders.xhtml"><em class="fa fa-list">&nbsp;</em>All orders</a>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.pendingNav()}"><em class="fa fa-list">&nbsp;</em> Pending Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.approvedNav()}"><em class="fa fa-list">&nbsp;</em> Approved Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.deliveryNav()}"><em class="fa fa-list">&nbsp;</em> Delivered Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <a href="manager_generate_report.xhtml"><em class="fa fa-print">&nbsp;</em>Reports</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em class="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+
+            </h:form>
+        </div><!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="breadcrumb text-center">
+                <strong>Welcome to </strong> <img src="image/#{market.business.image}" style="width: 35px;
+                                                  height: 35px;
+                                                  border-radius: 50%;"/> #{market.business.name} | #{market.business.sector.parent.parent.name} | #{market.business.sector.parent.name}
+            </div><!--/.row-->
+
+            <br/>
+            <div class="panel panel-container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-pinterest color-blue"></em>
+                                <div class="large">#{market.products.size()}</div>
+                                <div class="text-muted">Products</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-blue panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-orange"></em>
+                                <a href="manager_all_orders.xhtml"><div class="large">#{market.wholesalerSorders.size()}</div></a>
+                                <div class="text-muted">All Orders</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-orange panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-basket color-teal"></em>
+                                <a href="manager_pending_orders.xhtml"><div class="large">#{market.pending.size()}</div></a>
+                                <div class="text-muted">Pending Orders</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-red panel-widget ">
+                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-bag color-red"></em>
+                                <a href="manager_approved_orders.xhtml"><div class="large">#{market.approved.size()}</div></a>
+                                <div class="text-muted">Approved Orders</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--/.row-->
+            </div><!--/.row-->
+
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            All My Message
+                            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body">
+
+                            <div class="mail-box">
+
+                                <h:dataTable value="#{market.messages}" var="mess" class="table-responsive table table-inbox table-hover">
+                                    <h:column class="view-message dont-show">
+                                        #{mess.subject}
+                                    </h:column>
+                                    <h:column class="view-message text-right">
+                                        #{mess.create_at}
+                                    </h:column>
+                                    <h:column class="view-message">
+                                        <h:form>
+                                            <p:commandLink update=":bodyForm" action="#{market.setMessag(mess)}" onclick="PF('viewMsBody').show()"><i class="fa fa-eye-slash"></i> Read</p:commandLink>
+                                        </h:form>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>  
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>	<!--/.main-->
+        <script src="js/bootstrap.min.js"></script>
+       
+        <p:dialog widgetVar="viewMsBody" showEffect="blind" modal="true" hideEffect="explode">
+            <h:form id="bodyForm">
+                <div class="text-justify">
+                    #{market.messag.message}
+                </div>
+            </h:form>
+        </p:dialog>
+
+    </h:body>
+</html>
+

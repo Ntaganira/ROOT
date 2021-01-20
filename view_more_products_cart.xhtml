@@ -1,0 +1,587 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Rwanda | IMAR </title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<!--<p:ajaxStatus onstart="#{market.check()}"/>-->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet"/>    
+        <link rel="stylesheet" href="css/10062020.css"/>
+        <link rel="stylesheet" href="css/10062020_slick.css"/>
+
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <!--This is for advertisement ads-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+        <script src="js/custom.js"></script>
+
+        <style>
+            .ui-inputfield, .ui-widget-content .ui-inputfield, .ui-widget-header .ui-inputfield {
+                width: 100px;
+                border: 0px;
+                border: solid 2px #1e2a5e;
+                font-weight: 700;
+                text-align: center;
+            }
+
+            .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+                vertical-align: top;
+                border-top: 1px solid #ddd;
+                font-weight: 300;
+                text-align: center;
+                font-size: 13px;
+            }
+            thead {
+                border-bottom: solid #ffd10e 4px;
+                background: #1e435e;
+            }
+            h2 {
+                color: #000;
+                font-size: 26px;
+                font-weight: 300;
+                text-align: center;
+                text-transform: uppercase;
+                position: relative;
+                margin: 30px 0 80px;
+            }
+            h2 b {
+                color: #ffc000;
+            }
+            h2::after {
+                content: "";
+                width: 100px;
+                position: absolute;
+                margin: 0 auto;
+                height: 4px;
+                background: rgba(0, 0, 0, 0.2);
+                left: 0;
+                right: 0;
+                bottom: -20px;
+            }
+            .carousel {
+                margin: 50px auto;
+                padding: 0 70px;
+            }
+            .carousel .item {
+                min-height: 330px;
+                text-align: center;
+                overflow: hidden;
+            }
+            .carousel .item .img-box {
+                height: 160px;
+                width: 100%;
+                position: relative;
+            }
+            .carousel .item img {	
+                max-width: 100%;
+                max-height: 100%;
+                display: inline-block;
+                position: absolute;
+                bottom: 0;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+            }
+            .carousel .item h4 {
+                font-size: 18px;
+                margin: 10px 0;
+            }
+            .carousel .item .btn {
+                color: #333;
+                border-radius: 0;
+                font-size: 11px;
+                text-transform: uppercase;
+                font-weight: bold;
+                background: none;
+                border: 1px solid #ccc;
+                padding: 5px 10px;
+                margin-top: 5px;
+                line-height: 16px;
+            }
+            .carousel .item .btn:hover, .carousel .item .btn:focus {
+                color: #fff;
+                background: #000;
+                border-color: #000;
+                box-shadow: none;
+            }
+            .carousel .item .btn i {
+                font-size: 14px;
+                font-weight: bold;
+                margin-left: 5px;
+            }
+            .carousel .thumb-wrapper {
+                text-align: center;
+            }
+            .carousel .thumb-content {
+                padding: 15px;
+            }
+            .carousel .carousel-control {
+                height: 100px;
+                width: 40px;
+                background: none;
+                margin: auto 0;
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .carousel .carousel-control i {
+                font-size: 30px;
+                position: absolute;
+                top: 50%;
+                display: inline-block;
+                margin: -16px 0 0 0;
+                z-index: 5;
+                left: 0;
+                right: 0;
+                color: rgba(0, 0, 0, 0.8);
+                text-shadow: none;
+                font-weight: bold;
+            }
+            .carousel .item-price {
+                font-size: 13px;
+                padding: 2px 0;
+            }
+            .carousel .item-price strike {
+                color: #999;
+                margin-right: 5px;
+            }
+            .carousel .item-price span {
+                color: #86bd57;
+                font-size: 110%;
+            }
+            .carousel .carousel-control.left i {
+                margin-left: -3px;
+            }
+            .carousel .carousel-control.left i {
+                margin-right: -3px;
+            }
+            .carousel .carousel-indicators {
+                bottom: -50px;
+            }
+            .carousel-indicators li, .carousel-indicators li.active {
+                width: 10px;
+                height: 10px;
+                margin: 4px;
+                border-radius: 50%;
+                border-color: transparent;
+            }
+            .carousel-indicators li {	
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .carousel-indicators li.active {	
+                background: rgba(0, 0, 0, 0.6);
+            }
+            .star-rating li {
+                padding: 0;
+            }
+            .star-rating i {
+                font-size: 14px;
+                color: #ffc000;
+            }
+
+            #h3, .h3 {
+                font-size: 1.4rem;
+                font-weight: 700;
+                margin: 45px 0 48px 0;
+                letter-spacing: 5px;
+                color: #1e435e;
+                text-shadow: 2px 0px 5px #1e435e;
+            }
+
+            a:hover{
+                text-decoration:none;
+            }
+            .navbar-expand-sm .navbar-nav .dropdown-menu {
+                position: absolute;
+                margin: 10px 0;
+                background: #f5a004;
+                /* color: snow; */
+            }
+            .btn-success {
+                color: #f9ebb1;
+                background-color: #1e435e;
+                border-color: #1e435e;
+                letter-spacing: 3px;
+                font-size: 12px;
+            }
+
+            .form-control {
+                background-clip: padding-box;
+                border: 1px solid #f2f3f2;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <!-- header-section-starts -->
+        <div class="containe">	
+            <div class="news-paper">
+
+
+                <section class="header" >
+                    <div class="sub-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3"><i class="fa fa-bullhorn" style="float: right; font-size: 28px;"></i></div>
+                                <div class="col-md-6"><marquee>Advertise Your Business at <i class="fa fa-envelope"></i>
+                                        imargroup@gmail.com</marquee></div>
+                                <div class="col-md-3"><i class="fa fa-newspaper-o" style="font-size: 26px;"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logo-header">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2"><img style="width: 100px; padding: 27px 0;" src="images/logo.png" alt="logo"/></div>
+
+
+
+                                <div class="col-md-6"><br/>
+                                    <div class="search-box col-md-12">               
+                                        <h:form>
+                                            <div class="input-group mb-12">
+                                                <div class="input-group-prepend">
+                                                    <h:selectOneMenu value="#{market.keySearch}" class="btn btn-light">
+                                                        <f:selectItems value="#{market.quickCategories}" var="cate" itemLabel="#{cate}" itemValue="#{cate}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                                <input type="text" class="form-control" aria-label="Search input with dropdown button"/>
+                                                <div class="input-group-append">
+                                                    <h:commandLink action="#{market.searchProducts()}" class="btn btn-success" type="button">Search</h:commandLink>
+                                                </div>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div class="col-md-4">
+                                    <section class="customer-logos slider">
+                                        <c:forEach var="item" items="#{advertismentModal.advertisments}">
+                                            <a href="#{item.url}"><div class="slide"><img src="image/#{item.img}"/></div></a>
+                                        </c:forEach>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <nav class="navbar navbar-expand-sm  navbar-light bg-light">
+                        <div class="container">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="index.xhtml"> <i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">About</a>
+                                    </li>
+                                    <li class="nav-item dropdown dmenu">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                            Our Service
+                                        </a>
+                                        <div class="dropdown-menu sm-menu">
+                                            <a class="dropdown-item" href="#">service2</a>
+                                            <a class="dropdown-item" href="#">service 2</a>
+                                            <a class="dropdown-item" href="#">service 3</a>
+                                            <a class="dropdown-item" href="#">service 4</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Contact Us</a>
+                                    </li>
+                                </ul>
+                                <div class="social-part">
+                                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                        <li class="nav-item dropdown dmenu">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                                <i class="fa fa-user" aria-hidden="true"></i>Sign up
+                                            </a>
+                                            <div class="dropdown-menu sm-menu">
+                                                <a class="dropdown-item" href="client_new_account.xhtml"><i class="fa fa-plus" aria-hidden="true"></i> New account</a>
+                                                <a class="dropdown-item" href="login.xhtml"> <i class="fa fa-lock" aria-hidden="true"></i>Sign in</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </section>
+
+
+                <div class="main-content">		
+                    <div class="col-md-12 total-news" style="display: block;" id="addCart">
+
+                        <button onclick="viewCart()" style="background: #f5a004;
+                                font-weight: 700;
+                                border: none;
+                                line-height: 3;
+                                float: right;
+                                margin: 25px 20px;
+                                letter-spacing: 3px;" class="">&nbsp;<i class="fa fa-shopping-cart"></i> &nbsp; (#{market.cart.size()}) cart &nbsp; &nbsp;</button>
+
+                    </div>
+                    <h:form id="form5">
+                        <div class="col-md-12 total-news" style="display: block;" id="viewCart">
+                            <div class="sports-top">
+                                <h3 id="h3">My Shopping cart</h3>
+                                <div class="container">
+                                    <p:messages closable="true" autoUpdate="true"/>
+                                    <h:dataTable styleClass="table" id="table" value="#{market.cart}" style="    width: 100%;
+                                                 margin-bottom: 2rem;
+                                                 background-color: #f1f1f1;
+                                                 border: 2px solid #ffd10e;" var="product">
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h3 style="    background: #1e435e;
+                                                    text-align: center;
+                                                    font-size: 16px;
+                                                    letter-spacing: 4px;
+                                                    font-weight: 700;
+                                                    color: #fbedd4;">Image</h3>
+                                            </f:facet>
+                                            <img src="image/#{product.image}" alt="" style="width: 50px; height:50px;"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h3 style="    background: #1e435e;
+                                                    text-align: center;
+                                                    font-size: 16px;
+                                                    letter-spacing: 4px;
+                                                    font-weight: 700;
+                                                    color: #fbedd4;">Name</h3>
+                                            </f:facet>
+                                            #{product.name}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h3 style="    background: #1e435e;
+                                                    text-align: center;
+                                                    font-size: 16px;
+                                                    letter-spacing: 4px;
+                                                    font-weight: 700;
+                                                    color: #fbedd4;">Unit price</h3>
+
+                                            </f:facet>
+                                            #{product.price}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h3 style="    background: #1e435e;
+                                                    text-align: center;
+                                                    font-size: 16px;
+                                                    letter-spacing: 4px;
+                                                    font-weight: 700;
+                                                    color: #fbedd4;">Quantity</h3>
+                                            </f:facet>
+                                            <p:spinner value="#{product.selectedQuantity}" max="#{product.limite}" min="1">
+
+                                                <f:ajax event="keydown" listener="#{market.calculateTota()}" render="table"/>
+                                            </p:spinner>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h3 style="    background: #1e435e;
+                                                    text-align: center;
+                                                    font-size: 16px;
+                                                    letter-spacing: 4px;
+                                                    font-weight: 700;
+                                                    color: #fbedd4;">Price (Rwf) </h3>
+                                            </f:facet>
+                                            #{product.totalSummary()}
+                                            <h:commandLink action="#{market.remove(product)}" style="color: #e47272;
+                                                           display: table-caption;
+                                                           text-decoration: none;
+                                                           /* border: solid 2px; */
+                                                           /* padding: 1px 8px 0px 8px; */
+                                                           font-weight: 700;
+                                                           text-align: center;
+                                                           margin: -17px 0px 10px 0;
+                                                           font-size: 20px;"> <i class="fa fa-trash"></i> </h:commandLink>
+                                            <f:facet name="footer">
+                                                <p:commandLink update="table :tableDialog" action="#{market.calculateTota()}" style="    background: #cf0000;
+                                                               color: white;
+                                                               border-radius: 4px;
+                                                               margin: 25px 0;
+                                                               line-height: 37px;
+                                                               font-size: 12px;
+                                                               border: none;
+                                                               padding: 0px 6px;
+                                                               letter-spacing: 3px;" styleClass="btn btn-sm btn-warning"><i class="fa fa-calculator"></i>Calculate</p:commandLink>
+
+                                                <h3 style="background: #fff; text-align: center">Total: #{market.calculateTotal()}</h3>
+                                            </f:facet>
+                                        </h:column>
+                                    </h:dataTable>
+                                    <button style="float: right;
+                                            margin: -17px 0;
+                                            margin-right: 10px;
+                                            border-radius: 0;
+                                            font-weight: 70;
+                                            background: #e8bc02;
+                                            color: white;
+                                            border: none;
+                                            padding: 0px 18px;
+                                            /* padding: 1px 17px; */
+                                            line-height: 45px;
+                                            " styleClass="btn btn-sm btn-warning" type="button" data-toggle="modal" data-target="#checkout">Proceed <i class="fa fa-angle-double-right"></i> </button>
+
+                                </div> 
+                                <a href="view_more_products.xhtml#productsId" style="float: right;
+                                   background: #3c3c3c;
+                                   margin: 36px -110px;
+                                   font-weight: 500;
+                                   border: none;
+                                   border-radius: 0px;
+                                   line-height: 45px;
+                                   padding: 0 35px;" class="btn btn-sm btn-success"><i class="fa fa-angle-double-left"></i> Continue Shopping</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>		
+                <div class="clearfix"></div>
+                <!--Bottom Footer-->
+                <div class="imigongo">
+                    <img src="" alt=""/>
+                </div>
+                <div class="bottom section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="copyright">
+                                    <p>© <span>2020</span> <a href="#" class="transition">IMAR | Group</a> All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Bottom Footer-->
+
+            </div>
+        </div>
+        <script>
+            function viewCart() {
+                document.getElementById("addCart").style.display = 'none';
+                document.getElementById("viewCart").style.display = 'block';
+            }
+            function viewCartBack() {
+                document.getElementById("addCart").style.display = 'block';
+                document.getElementById("viewCart").style.display = 'none';
+            }
+        </script>
+        <div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Invice</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h:dataTable id="tableDialog" styleClass="table" value="#{market.cart}" var="cart">
+                            <h:column>
+                                #{cart.name}
+                            </h:column>
+                            <h:column>
+                                #{cart.selectedQuantity}
+                            </h:column>
+                            <h:column>
+                                <f:facet  name="footer"> <div style="border-top: solid #F44336;
+                                                              color: #F44336;
+                                                              font-weight: bold;
+                                                              font-size: 13px;
+                                                              width: 90%;
+                                                              margin: auto;
+                                                              letter-spacing: 2px;">#{market.calculateTotal()}</div></f:facet>
+                                    #{cart.price * cart.selectedQuantity}
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                style="border-radius: 0;
+                                padding: 0 45px;
+                                letter-spacing: 4px;
+                                line-height: 40px;
+                                background: #980404c7;" data-dismiss="modal">Close <i class="fa fa-close"></i></button>
+                        <h:form>
+                            <h:commandLink style="
+                                           font-weight: 700;
+                                           background: #073869;
+                                           color: white;
+                                           border-radius: 0;
+                                           border: none;
+                                           padding: 0 25px;" styleClass="btn btn-sm btn-warning" action="#{market.sendOrder()}">Send Now <i class="fa fa-send"></i></h:commandLink>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p:dialog widgetVar="menuDialog" position="top" closable="false"  modal="true" showEffect="blind" width="1000">
+            <div class="header-left">
+                <div class="logo">
+                    <a href="#">
+                        <h6>the</h6>
+                        <h1>IMAR Group<span>Rwanda</span></h1>
+                    </a>
+                </div>
+
+            </div>
+            <h6 style="font-size: 20px; margin-left: 40%; font-family: 'Times New Romain'; margin-top: 60px; margin-bottom: 30px;
+                border-bottom: red solid; padding-bottom: 10px; width: 25%; text-align: center; font-weight: 500;">List of Products selected</h6>
+
+            <h:dataTable id="sas" styleClass="table" value="#{market.cart}" var="cart">
+                <h:column>
+                    #{cart.name}
+                </h:column>
+                <h:column>
+                    #{cart.selectedQuantity}
+                </h:column>
+                <h:column>
+                    <f:facet  name="footer"> <div style="border-top: solid #F44336;
+                                                  color: #F44336;
+                                                  font-weight: bold;
+                                                  font-size: 13px;
+                                                  width: 90%;
+                                                  margin: auto;
+                                                  letter-spacing: 2px;">#{market.calculateTotal()}</div></f:facet>
+                        #{cart.price * cart.selectedQuantity}
+                </h:column>
+            </h:dataTable>
+            <f:facet name="footer">
+                <h:form>
+                    <h:commandLink style="
+                                   float: right; 
+                                   margin-right:50px;
+                                   font-weight: 700;
+                                   background: #00BCD4;
+                                   color: white;
+
+                                   border: none;
+                                   " styleClass="btn btn-sm btn-warning" action="#{market.sendOrder()}">send Now</h:commandLink>
+                    <p:commandLink style="
+                                   margin-right:50px;
+                                   font-weight: 700;
+                                   background: #F44336;
+                                   color: white;
+                                   border: none;
+                                   " styleClass="btn btn-sm btn-warning" onclick="PF('menuDialog').hide()">Close</p:commandLink>
+                </h:form>
+            </f:facet>
+        </p:dialog>
+
+    </h:body>
+</html>
+

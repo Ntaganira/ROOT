@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Retailer - Dashboard</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/datepicker3.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+        <p:ajaxStatus onstart="#{market.check()}"/>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/Market/client_dashboard.xhtml"><span>imar </span>group</a>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <a href="client_profile.xhtml"><img src="image/#{market.user1.image}" styleClass="img-responsive" alt=""/></a>
+                </div>
+
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                    <div styleClass="profile-usertitle-name">#{market.user1.businessName}</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+            <!--            <form role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search"/>
+                            </div>
+                        </form>-->
+            <h:form>
+                <ul class="nav menu">
+                    <li class="">
+                        <a href="client_dashboard.xhtml"><em class="fa fa-dashboard">&nbsp;</em>Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <a href="client_orders.xhtml"><em class="fa fa-list">&nbsp;</em> All My Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_pending_orders.xhtml"><em class="fa fa-list">&nbsp;</em> Pending Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_approved_orders.xhtml"><em class="fa fa-ticket">&nbsp;</em> Approved Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_delivered.xhtml"><em class="fa fa-ticket">&nbsp;</em> Delivered Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_new_order.xhtml"><em class="fa fa-ticket">&nbsp;</em> Make new Order</a>
+                    </li>
+                    <li class="">
+                        <a href="client_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em class="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+
+            </h:form>
+        </div><!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="#">
+                            <em class="fa fa-home"></em>
+                        </a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div><!--/.row--><br/>
+
+            <div class="panel panel-container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-lg-2 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-home color-blue"></em>
+                                <div styleClass="large">#{market.businesses.size()}</div>
+                                <div class="text-muted">Companies</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-2 no-padding">
+                        <div class="panel panel-blue panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-list-ol color-orange"></em>
+                                <a href="client_orders.xhtml"><div styleClass="large">#{market.myOrders.size()}</div></a>
+                                <div class="text-muted">All Orders</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-2 no-padding">
+                        <div class="panel panel-orange panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-list-alt color-teal"></em>
+                                <a href="client_pending_orders.xhtml"><div styleClass="large">#{market.pending.size()}</div></a>
+                                <div class="text-muted">Pending</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-2 no-padding">
+                        <div class="panel panel-red panel-widget ">
+                            <div class="row no-padding"><em class="fa fa-xl fa-angle-down color-red"></em>
+                                <a href="client_approved_orders.xhtml"><div styleClass="large">#{market.approved.size()}</div></a>
+                                <div class="text-muted">Approved</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-red panel-widget ">
+                            <div class="row no-padding"><em class="fa fa-xl fa-car color-red"></em>
+                                <a href="client_delivered.xhtml"><div styleClass="large">#{market.myOrders.size()}</div></a>
+                                <div class="text-muted">Delivered</div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.row-->
+            </div>
+            <!--/.row-->
+
+            <div class="row">
+                <p:messages/>
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            My Profile
+                            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body">
+                            <div class="profile-update">
+                                <div class="col-md-6">
+                                    <div class="card text-white bg-success">
+                                        <div class="card-body">
+                                            <h:form  enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control disable" disabled="true" value="#{market.user1.firstName}" placeholder="First Name"  type=""/> 
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control disable" disabled="true" value="#{market.user1.lastName}" placeholder="Last Name"  type=""/> 
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control disable" disabled="true" value="#{market.user1.gender}" placeholder="Gender"  type=""/> 
+                                                </div> <!-- form-group// -->
+
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control disable" disabled="true"  value="#{market.user1.businessName}" placeholder="Business Name"  type="bname"/>
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control disable" disabled="true"  value="#{market.user1.nid}"  placeholder="National Id"  type=""/>
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control disable" disabled="true"  value="#{market.user1.email}"  placeholder="Email"  type="phone"/>
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control disable" disabled="true"  value="#{market.user1.phone}"  placeholder="phone number"  type="phone"/>
+                                                </div> <!-- form-group// -->
+                                                <a class="btn btn-success" style="float:right;" href="#">Update Now</a>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="profile-show">
+
+                                <div class="col-md-6">
+                                    <div class="card text-white bg-success">
+                                        <div class="card-body">
+
+                                            <h:form  enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control " value="#{market.user1.firstName}" placeholder="First Name"  type=""/> 
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control "  value="#{market.user1.lastName}" placeholder="Last Name"  type=""/> 
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control"  value="#{market.user1.gender}" placeholder="Gender"  type=""/> 
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control"  value="#{market.user1.tinNumber}" placeholder="TIN Number"  type=""/> 
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control"   value="#{market.user1.businessName}" placeholder="Business Name"  type="bname"/>
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control "  value="#{market.user1.nid}"  placeholder="National Id"  type=""/>
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control" value="#{market.user1.email}"  placeholder="Email"  type="phone"/>
+                                                </div> <!-- form-group// -->
+                                                <div class="form-group">
+                                                    <p:inputText required="true" styleClass="form-control "  value="#{market.user1.phone}"  placeholder="phone number"  type="phone"/>
+                                                </div> <!-- form-group// -->
+
+                                                <h:commandLink class="btn btn-success" style="float:right;margin: 10px 0;
+                                                               border: 0;
+                                                               border-radius: 0px;
+                                                               padding: 0 60px;
+                                                               background: #0ab16c;
+                                                               letter-spacing: 1px;" action="#{market.updateProfile()}">Submit</h:commandLink>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--/.row-->
+
+
+        </div>	<!--/.main-->
+
+        <script>
+            let profileUpdate = document.querySelector('.profile-update');
+            let profileShow = document.querySelector('.profile-show');
+            let btnSuccess = document.querySelector('.btn-success');
+
+
+            profileShow.style.display = "none";
+            btnSuccess.addEventListener('click', (e) => {
+                e.preventDefault();
+                profileShow.style.display = "block";
+                profileUpdate.style.display = "none";
+            });
+            console.log(profileUpdate);
+        </script>
+    </h:body>
+</html>
+

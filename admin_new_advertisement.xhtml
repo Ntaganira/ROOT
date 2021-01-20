@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>IMAR - Dashboard</title>
+        <!--<link href="css/bootstrap.min.css" rel="stylesheet"/>-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <p:ajaxStatus onstart="#{market.check()}"/>
+        <style>
+            .btn-danger1 {
+                border-radius: 0;
+                border: 0;
+                line-height: 2.5;
+                letter-spacing: 1px;
+                margin: 10px 0;
+                padding: 0 10px;
+                background-color: #f9243f;
+                color:#fff;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="#"><span>IMAR </span>group</a>
+                    <h:form>
+                        <ul class="nav navbar-top-links navbar-right">
+                            <li class="dropdown">
+                                <h:commandLink action="#{market.logout()}" class="dropdown-toggle ">
+                                    <em class="fa fa-power-off"></em>
+                                </h:commandLink>
+                            </li>
+                        </ul>
+                    </h:form>
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <img src="image/#{market.user1.image}"  styleClass="img-responsive" alt=""/>
+                </div>
+                <div class="profile-usertitle">
+                    <div styleClass="profile-usertitle-name">#{market.user1.firstName}</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+            <h:form>
+                <ul class="nav menu">
+                    <li class="">
+                        <a href="admin_dashboard.xhtml"><em class="fa fa-dashboard">&nbsp;</em>Dashboard</a>
+                    </li>
+                    <li class="">
+                        <a href="#"  data-toggle="modal" data-target="#newRepresentative"><em class="fa fa-user">&nbsp;</em>New Representative</a>
+                    </li>
+                    <li class="">
+                        <a href="admin_view_wholesaler.xhtml"><em class="fa fa-list">&nbsp;</em>Wholesalers</a>
+                    </li>
+                    <li class="">
+                        <a href="admin_view_retailer.xhtml"><em class="fa fa-list">&nbsp;</em> Retailer</a>
+                    </li>
+                    <li class="active">
+                        <a href="admin_new_advertisement.xhtml"><em class="fa fa-print">&nbsp;</em> Advertise Now</a>
+                    </li>
+                    <li class="">
+                        <a href="admin_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em class="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+            </h:form>
+        </div> <!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="#">
+                            <em class="fa fa-home"></em>
+                        </a></li>
+                    <li class="active">Administrator Dashboard</li>
+                </ol>
+            </div><!--/.row-->
+            <br/>
+            
+            <div class="panel panel-container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-adn color-blue"></em>
+                                <div styleClass="large">#{market.admins.size()}</div>
+                                <div class="text-muted">Administrators</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-blue panel-widget border-right"><a href="admin_view_retailer.xhtml">
+                                <div class="row no-padding"><em class="fa fa-xl fa-user color-orange"></em>
+                                    <div styleClass="large">#{market.owners.size()}</div>
+                                    <!--<div class="large">#{market.represantatives.size()}</div>-->
+                                    <div class="text-muted">Representatives</div>
+                                </div></a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-orange panel-widget border-right"><a href="admin_view_retailer.xhtml">
+                                <div class="row no-padding"><em class="fa fa-xl fa-bitcoin color-teal"></em>
+                                    <div styleClass="large">#{market.businesses.size()}</div>
+                                    <div class="text-muted">Businesses</div>
+                                </div></a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-red panel-widget "><a href="admin_view_retailer.xhtml">
+                                <div class="row no-padding"><em class="fa fa-xl fa-chain color-red"></em>
+                                    <div styleClass="large">#{market.clients.size()}</div>
+                                    <div class="text-muted">Clients</div>
+                                </div></a>
+                        </div>
+                    </div>
+                </div><!--/.row-->
+            </div><!--/.row-->
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           Advertise Now (New Registration)
+                            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body">
+                            <p:messages closable="true"/>
+                            <h:form class="form-horizontal" enctype="multipart/form-data">
+                                <fieldset>
+                                    <!-- Name input-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="image">Photo</label>
+                                        <div class="col-md-9">
+                                            <h:inputFile value="#{advertismentModal.image}" id="image" required="true"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="email">Starting Date:</label>
+                                        <div class="col-md-9">
+                                            <p:calendar id="start"  value="#{advertismentModal.advertisment.started_at}"  placeholder="Starting Date" styleClass="form-control"/>
+                                            <!--<p:inputText id="Address"  value=""  type="text" placeholder="address" class="form-control"/>-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="email">Ending Date:</label>
+                                        <div class="col-md-9">
+                                            <p:calendar id="end"  value="#{advertismentModal.advertisment.ended_at}"  placeholder="Ending Date" styleClass="form-control"/>
+                                            <!--<p:inputText id="Address"  value=""  type="text" placeholder="address" class="form-control"/>-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="email">URL / Link</label>
+                                        <div class="col-md-9">
+                                            <h:inputText id="link"  value="#{advertismentModal.advertisment.url}" class="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 widget-right">
+                                            <h:commandLink action="#{advertismentModal.newAdvertisement()}" type="submit" styleClass="btn btn-default btn-md pull-right">Submit</h:commandLink>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--/.row-->
+
+
+        </div>	<!--/.main-->
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script>
+            
+            $(document).ready(function () {
+                $('#businesses').DataTable(
+                        {
+                            
+                            "aLengthMenu": [[2, 5, 10, 25, -1], [2, 5, 10, 25, "All"]],
+                            "iDisplayLength": 5
+                        }
+                );
+            });
+            
+        </script>
+    </h:body>
+</html>
+

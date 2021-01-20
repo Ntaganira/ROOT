@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>IMAR - Dashboard</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/datepicker3.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+        <p:ajaxStatus onstart="#{market.check()}"/>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/Market/representative_businesses.xhtml"><span>imar </span>group</a>
+
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <a href="client_profile_1.xhtml"><img src="image/#{market.user1.image}" class="img-responsive" alt=""/></a>
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">#{market.user1.firstName}</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+            <h:form>
+                <ul class="nav menu">
+                    <li class="">
+                        <a href="representative_businesses.xhtml">Dashboard</a>
+                    </li>
+                    <li class="active">
+                        <h:commandLink  action="#{market.navNewBusiness}"><em class="fa fa-list">&nbsp;</em>new Business</h:commandLink>
+                    </li>
+                    <li class="">
+                        <a href="representative_businesses.xhtml"><em class="fa fa-list">&nbsp;</em>My businesses</a>
+                    </li>
+                     <li class="">
+                        <a href="representative_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em class="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+
+            </h:form>
+        </div><!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="#">
+                            <em class="fa fa-home"></em>
+                        </a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div><!--/.row--><br/>
+
+
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-7 col-md-7">
+                    <div class="panel panel-default">
+                        <p:messages closable="true"/>
+                        <div class="panel-heading">
+                            Register New Business
+                            <span class="pull-right clickabl panel-toggl panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body collaps">
+                            <h:form styleClass="form-horizontal" enctype="multipart/form-data">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="Logo">Company Logo</label>
+                                        <div class="col-md-9">
+                                            <h:inputFile required="true" id="Logo" value="#{market.image}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Name</label>
+                                        <div class="col-md-9">
+                                            <p:inputText value="#{market.business.name}" id="name" type="text" placeholder="name" styleClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">TIN Number</label>
+                                        <div class="col-md-9">
+                                            <p:inputText value="#{market.business.tin}" id="tin" type="text" placeholder="Tin" styleClass="form-control"/>
+                                        </div>
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Province</label>
+
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu id="province"  value="#{market.selectedProvince}" styleClass="disabled form-control">
+                                                <f:selectItems value="#{market.provinces}" var="pr" itemLabel="#{pr.name}" itemValue="#{pr.name}"/>
+                                                <p:ajax listener="#{market.filterDistricts()}" update="district"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>                         
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">District</label>
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu id="district"  value="#{market.selectedDistrict}" styleClass="disabled form-control">
+                                                <f:selectItem itemLabel=" Select District " noSelectionOption="false"/>
+                                                <f:selectItems value="#{market.districts}" var="dis" itemLabel="#{dis.name}" itemValue="#{dis.name}"/>
+                                                <p:ajax listener="#{market.filterSectors()}" update="sector"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Sector</label>
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu id="sector"  value="#{market.selectedSector}" styleClass="disabled form-control">
+                                                <f:selectItem itemLabel=" Select Sector " noSelectionOption="false"/>
+                                                <f:selectItems value="#{market.sectors}" var="sec" itemLabel="#{sec.name}" itemValue="#{sec.name}"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="email">Starting date</label>
+                                        <div class="col-md-9">
+                                            <p:calendar id="start"  value="#{market.business.startDate}"  placeholder="" styleClass="form-control"/>
+                                            <!--<p:inputText id="Address"  value=""  type="text" placeholder="address" class="form-control"/>-->
+                                        </div>
+                                    </div>
+
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 widget-right">
+                                            <h:commandLink action="#{market.newBusiness()}" type="submit" styleClass="btn btn-default btn-md pull-right">Submit</h:commandLink>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-md-3">
+                </div>
+
+
+
+
+            </div><!--/.row-->
+
+
+        </div>	<!--/.main-->
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <script src="js/chart-data.js"></script>
+        <script src="js/easypiechart.js"></script>
+        <script src="js/easypiechart-data.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/custom.js"></script>
+        <script>
+            window.onload = function () {
+                var chart1 = document.getElementById("line-chart").getContext("2d");
+                window.myLine = new Chart(chart1).Line(lineChartData, {
+                    responsive: true,
+                    scaleLineColor: "rgba(0,0,0,.2)",
+                    scaleGridLineColor: "rgba(0,0,0,.05)",
+                    scaleFontColor: "#c5c7cc"
+                });
+            };
+        </script>
+    </h:body>
+</html>
+

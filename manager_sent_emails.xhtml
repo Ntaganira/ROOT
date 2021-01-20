@@ -1,0 +1,310 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>IMAR | WEB | Dashboard</title>
+        <link rel="icon" href="images/logo.png" type="image/icon type"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+        <p:ajaxStatus onstart="#{market.check()}"/>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="/Market/manager_dashboard.xhtml"><span>imar </span>group</a>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <a href="client_profile_1.xhtml"><img src="image/#{market.user1.image}" class="img-responsive" alt=""/></a>
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">#{market.user1.firstName}</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+
+            <h:form>
+                <ul class="nav menu">
+                    <li class="active">
+                        <a href="manager_dashboard.xhtml"><em class="fa fa-dashboard">&nbsp;</em>Dashboard</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_business_products.xhtml"><em class="fa fa-list">&nbsp;</em>Current Stock</a>
+                    </li>
+                    <li class="">
+                        <a href="manager_all_orders.xhtml"><em class="fa fa-list">&nbsp;</em>All orders</a>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.pendingNav()}"><em class="fa fa-list">&nbsp;</em> Pending Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.approvedNav()}"><em class="fa fa-list">&nbsp;</em> Approved Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <h:commandLink action="#{market.deliveryNav()}"><em class="fa fa-list">&nbsp;</em> Delivered Orders</h:commandLink>
+                    </li>
+                    <li class="">
+                        <a href="manager_generate_report.xhtml"><em class="fa fa-print">&nbsp;</em>Reports</a>
+                    </li>
+                     <li class="">
+                        <a href="manager_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em class="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+
+            </h:form>
+        </div><!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="breadcrumb text-center">
+                <strong>Welcome to </strong> <img src="image/#{market.business.image}" style="width: 35px;
+                                                  height: 35px;
+                                                  border-radius: 50%;"/> #{market.business.name} | #{market.business.sector.parent.parent.name} | #{market.business.sector.parent.name}
+            </div><!--/.row-->
+
+            <br/>
+            <div class="panel panel-container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-pinterest color-blue"></em>
+                                <div class="large">#{market.products.size()}</div>
+                                <div class="text-muted">Products</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-blue panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-cart color-orange"></em>
+                                <a href="manager_all_orders.xhtml"><div class="large">#{market.wholesalerSorders.size()}</div></a>
+                                <div class="text-muted">All Orders</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-orange panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-basket color-teal"></em>
+                                <a href="manager_pending_orders.xhtml"><div class="large">#{market.pending.size()}</div></a>
+                                <div class="text-muted">Pending Orders</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-red panel-widget ">
+                            <div class="row no-padding"><em class="fa fa-xl fa-shopping-bag color-red"></em>
+                                <a href="manager_approved_orders.xhtml"><div class="large">#{market.approved.size()}</div></a>
+                                <div class="text-muted">Approved Orders</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!--/.row-->
+            </div><!--/.row-->
+
+            
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Notifying all Clients
+                            <span class="pull-right clickable panel-toggle panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body">
+                            <h:form enctype="multipart/form-data">
+                                <p:messages closable="true"/>
+                                <fieldset>
+                                    
+                                    <div class="form-group">
+                                        <p:inputText required="true" styleClass="form-control" validatorMessage="Subject is required !" value="#{market.subject}" placeholder="Subject"  type="text"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:inputTextarea maxlength="500" rows="10" required="true" validatorMessage="Message is required !" styleClass="form-control" value="#{market.message}"  placeholder="Type Your Message Here!"  />
+                                    </div>
+                                    <h:commandLink action="#{market.sendNotificationManager()}" class="btn btn-primary">Submit</h:commandLink>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>	<!--/.main-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-labelledby="newProduct" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Register New Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <h:form styleClass="form-horizontal" enctype="multipart/form-data">
+                                <fieldset>
+                                    <!-- Name input-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Bar_code</label>
+                                        <div class="col-md-9">
+                                            <p:inputText value="#{market.product.barCode}" id="code" type="text" placeholder="Code" styleClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Upload Profile</label>
+                                        <div class="col-md-9">
+                                            <h:inputFile required="true" value="#{market.image}"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Product name</label>
+                                        <div class="col-md-9">
+                                            <p:inputText value="#{market.product.name}" id="name" type="text" placeholder="name" styleClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="cat">Category</label>
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu value="#{market.product.category}" id="cat" styleClass="form-control">
+                                                <f:selectItems value="#{market.quickCategories}" var="cate" itemLabel="#{cate}" itemValue="#{cate}"/>
+                                            </h:selectOneMenu>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="unit">Product Unit</label>
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu value="#{market.product.unit}" id="unit" styleClass="form-control">
+                                                <f:selectItem itemLabel="Kg" itemValue="Kg"/>     
+                                                <f:selectItem itemLabel="Battle (s)" itemValue="Battle"/>     
+                                                <f:selectItem itemLabel="L" itemValue="L"/>     
+                                                <f:selectItem itemLabel="Piece" itemValue="Piece"/>     
+                                                <f:selectItem itemLabel="Carton" itemValue="Carton"/>     
+                                                <f:selectItem itemLabel="Box (s)" itemValue="Box"/>     
+                                                <f:selectItem itemLabel="Set" itemValue="Set"/>     
+                                            </h:selectOneMenu>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Description</label>
+                                        <div class="col-md-9">
+                                            <p:inputTextarea value="#{market.product.description}" id="disc" placeholder="Description" styleClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Quantity</label>
+                                        <div class="col-md-9">
+                                            <p:inputText value="#{market.product.quantity}" id="tin" type="text" placeholder="name" styleClass="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name">Price</label>
+                                        <div class="col-md-9">
+                                            <p:inputText value="#{market.product.price}" id="price" type="text" placeholder="Price" styleClass="form-control"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="email">Manufacture Date</label>
+                                        <div class="col-md-9">
+                                            <p:calendar id="manDate"  value="#{market.product.manufactureDate}"  placeholder="Manufacture Date"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="email">Expire Date</label>
+                                        <div class="col-md-9">
+                                            <p:calendar id="expDate"  value="#{market.product.expireDate}"  placeholder="Expire Date"/>
+                                        </div>
+                                    </div>
+
+                                    <!-- Form actions -->
+                                    <div class="form-group">
+                                        <div class="col-md-12 widget-right">
+                                            <h:commandLink action="#{market.newProduct()}" type="submit" styleClass="btn btn-default btn-md pull-right">Submit</h:commandLink>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </h:form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="newProductExcel" tabindex="-1" role="dialog" aria-labelledby="newProductExcel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload Excel File</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                           <h:form styleClass="form-horizontal" enctype="multipart/form-data">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="name"></label>
+                                        <div class="col-md-9">
+                                            <h:inputFile value="#{market.image}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12 widget-right">
+                                            <h:commandLink action="#{market.newProductImport()}" type="submit" styleClass="btn btn-default btn-md pull-right">Submit</h:commandLink>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </h:form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <script src="js/chart-data.js"></script>
+        <script src="js/easypiechart.js"></script>
+        <script src="js/easypiechart-data.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/custom.js"></script>
+
+
+    </h:body>
+</html>
+

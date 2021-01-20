@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>IMAR - Dashboard</title>
+        <!--<link href="css/bootstrap.min.css" rel="stylesheet"/>-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link href="css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="css/styles.css" rel="stylesheet"/>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
+
+<p:ajaxStatus onstart="#{market.check()}"/>
+
+    </h:head>
+    <h:body>
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse"><span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="#"><span>IMAR </span>group</a>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+            <div class="profile-sidebar">
+                <div class="profile-userpic">
+                    <img src="image/#{market.user1.image}"  styleClass="img-responsive" alt=""/>
+                </div>
+                <div class="profile-usertitle">
+                    <div styleClass="profile-usertitle-name">#{market.user1.firstName}</div>
+                    <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="divider"></div>
+            <h:form>
+                <ul class="nav menu">
+                    <li class="active">
+                        <a href="admin_dashboard.xhtml"><em class="fa fa-dashboard">&nbsp;</em>Dashboard</a>
+                    </li>
+                    <li class="">
+                        <a href="#"  data-toggle="modal" data-target="#newRepresentative"><em class="fa fa-user">&nbsp;</em>New Representative</a>
+                    </li>
+                    <li class="">
+                        <a href="admin_view_wholesaler.xhtml"><em class="fa fa-list">&nbsp;</em>Wholesalers</a>
+                    </li>
+                    <li class="">
+                        <a href="admin_view_retailer.xhtml"><em class="fa fa-list">&nbsp;</em> Retailer</a>
+                    </li>
+                    <li class="">
+                        <a href="admin_sent_emails.xhtml"><em class="fa fa-user">&nbsp;</em> Send Notification</a>
+                    </li>
+                    <li class="">
+                        <a href="admin_new_advertisement.xhtml"><em class="fa fa-print">&nbsp;</em> Advertise Now</a>
+                    </li>
+                      <li class="">
+                        <a href="admin_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
+                    </li>
+                    <li>
+                        <h:commandLink action="#{market.logout()}"><em styleClass="fa fa-power-off">&nbsp;</em> Logout
+                        </h:commandLink>
+                    </li>
+                </ul>
+            </h:form>
+        </div> <!--/.sidebar-->
+
+        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            <div class="row">
+                <ol class="breadcrumb">
+                    <li><a href="#">
+                            <em class="fa fa-home"></em>
+                        </a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div><!--/.row-->
+            <br/>
+            <p:messages closable="true"/>
+            <div class="panel panel-container">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-teal panel-widget border-right">
+                            <div class="row no-padding"><em class="fa fa-xl fa-adn color-blue"></em>
+                                <div styleClass="large">#{market.admins.size()}</div>
+                                <div class="text-muted">Administrators</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-blue panel-widget border-right"><a href="admin_view_retailer.xhtml">
+                            <div class="row no-padding"><em class="fa fa-xl fa-user color-orange"></em>
+                                <div styleClass="large">#{market.owners.size()}</div>
+                                <!--<div class="large">#{market.represantatives.size()}</div>-->
+                                <div class="text-muted">Representatives</div>
+                            </div></a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                        <div class="panel panel-orange panel-widget border-right"><a href="admin_view_retailer.xhtml">
+                            <div class="row no-padding"><em class="fa fa-xl fa-bitcoin color-teal"></em>
+                                <div styleClass="large">#{market.businesses.size()}</div>
+                                <div class="text-muted">Businesses</div>
+                            </div></a>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-lg-3 no-padding">
+                            <div class="panel panel-red panel-widget "><a href="admin_view_retailer.xhtml">
+                            <div class="row no-padding"><em class="fa fa-xl fa-chain color-red"></em>
+                                <div styleClass="large">#{market.clients.size()}</div>
+                                <div class="text-muted">Clients</div>
+                            </div></a>
+                        </div>
+                    </div>
+                </div><!--/.row-->
+            </div><!--/.row-->
+
+            <div class="row">
+
+                <div class="col-xs-4 col-md-7" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Register add Manager
+                            <span class="pull-right panel-button-tab-left"><em class="fa fa-toggle-down"></em></span></div>
+                        <div class="panel-body">
+                            <h:form  enctype="multipart/form-data">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <h:inputFile required="true" value="#{market.image}"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:inputMask mask="1 1999 9 9999999 9 99" required="true" styleClass="form-control" value="#{market.user.nid}" placeholder="National Id"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:inputText required="true" styleClass="form-control" value="#{market.user.firstName}" placeholder="First Name"  type="fname"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:inputText required="true" styleClass="form-control" value="#{market.user.lastName}" placeholder="Last name" type="lname"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:inputText required="true" styleClass="form-control" value="#{market.user.username}"  placeholder="User Name"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:inputText required="true" styleClass="form-control" value="#{market.user.email}"  placeholder="E-mail"  type="email"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <p:inputText required="true" styleClass="form-control" value="#{market.user.password}"  placeholder="password"  type="password"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p:inputText required="true" styleClass="form-control" value="#{market.user.phone}"  placeholder="phone number"  type="phone"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:selectOneMenu  value="#{market.user.gender}" styleClass="form-control">
+                                            <f:selectItem itemLabel="Female" itemValue="Female"/>
+                                            <f:selectItem itemLabel="Male" itemValue="Male"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Province</label>
+
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu id="province"  value="#{market.selectedProvince}" styleClass="disabled form-control">
+                                                <f:selectItems value="#{market.provinces}" var="pr" itemLabel="#{pr.name}" itemValue="#{pr.name}"/>
+                                                <p:ajax listener="#{market.filterDistricts()}" update="district"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>                         
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">District</label>
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu id="district"  value="#{market.selectedDistrict}" styleClass="disabled form-control">
+                                                <f:selectItem itemLabel=" Select District " noSelectionOption="false"/>
+                                                <f:selectItems value="#{market.districts}" var="dis" itemLabel="#{dis.name}" itemValue="#{dis.name}"/>
+                                                <p:ajax listener="#{market.filterSectors()}" update="sector"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Sector</label>
+                                        <div class="col-md-9">
+                                            <h:selectOneMenu id="sector"  value="#{market.selectedSector}" styleClass="disabled form-control">
+                                                <f:selectItem itemLabel=" Select Sector " noSelectionOption="false"/>
+                                                <f:selectItems value="#{market.sectors}" var="sec" itemLabel="#{sec.name}" itemValue="#{sec.name}"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <h:commandLink action="#{market.newManager()}" styleClass="btn btn-lg btn-primary">Register</h:commandLink>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!--/.row-->
+
+
+        </div>	<!--/.main-->
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chart.min.js"></script>
+        <script src="js/chart-data.js"></script>
+        <script src="js/easypiechart.js"></script>
+        <script src="js/easypiechart-data.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script src="js/custom.js"></script>
+        <script>
+            window.onload = function () {
+                var chart1 = document.getElementById("line-chart").getContext("2d");
+                window.myLine = new Chart(chart1).Line(lineChartData, {
+                    responsive: true,
+                    scaleLineColor: "rgba(0,0,0,.2)",
+                    scaleGridLineColor: "rgba(0,0,0,.05)",
+                    scaleFontColor: "#c5c7cc"
+                });
+            };
+        </script>
+    </h:body>
+</html>
+
