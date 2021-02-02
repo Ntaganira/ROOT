@@ -11,14 +11,14 @@
         <property name="connection.pool_size">4</property>
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
         <mapping class="market.Domain.Business" />
+        <mapping class="market.Domain.Advertisment" />
         <mapping class="market.Domain.Product"/>
         <mapping class="market.Domain.User" />
         <mapping class="market.Domain.Order" />
         <mapping class="market.Domain.OrderedProducts" />
         <mapping class="market.Domain.Location" />
-        <mapping class="market.Domain.Advertisment" />
         <mapping class="market.Domain.Message" />
     </session-factory>
 </hibernate-configuration>
