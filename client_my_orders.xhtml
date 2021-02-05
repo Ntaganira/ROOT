@@ -213,10 +213,18 @@
                                     <h:column>
                                         <f:facet name="header">Price</f:facet>
                                             #{product.totalAmount()}
-                                        <f:facet name="footer"></f:facet>
-                                        <strong>Total: #{market.totalOnInvoice()}</strong>
                                     </h:column>
                                 </h:dataTable>
+                                <table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;line-height: inherit;text-align: left;">
+                                    <tr class="total">
+                                        <td style="padding: 5px;vertical-align: top;"></td>
+                                        <td style="padding: 5px;vertical-align: top;"></td>
+                                        <td style="padding: 5px;vertical-align: top;"></td>
+                                        <td style="padding: 5px;vertical-align: top;text-align: center;border-top: 2px solid #eee;font-weight: bold;">
+                                            Total: #{market.totalOnInvoice()}
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
