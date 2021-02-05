@@ -204,7 +204,7 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">Price/unit</f:facet>
-                                            #{product.price+product.product.unit}
+                                            #{product.price}
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">Quantity</f:facet>
@@ -214,7 +214,7 @@
                                         <f:facet name="header">Price</f:facet>
                                             #{product.totalAmount()}
                                         <f:facet name="footer"></f:facet>
-                                        <strong>Total: 200 Rwf</strong>
+                                        <strong>Total: #{market.totalOnInvoice()}</strong>
                                     </h:column>
                                 </h:dataTable>
                             </div>
