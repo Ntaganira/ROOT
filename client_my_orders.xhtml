@@ -17,7 +17,17 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"/>
 
         <p:ajaxStatus onstart="#{market.check()}"/>
-
+        <style>
+            .btn-danger {
+                line-height: 3;
+                letter-spacing: 0px;
+                margin: 10px 55px;
+                padding: 0px 15px;
+                border: 1px solid black;
+                border-radius: 6px;
+                background: #ff9800;
+            }
+        </style>
     </h:head>
     <h:body>
         <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -137,14 +147,17 @@
                                 <h:commandLink action="#{market.printClientInvoice()}" style="float: right;" styleClass="btn btn-danger "><i class="fa fa-print"></i> Get Invoice</h:commandLink>
                             </h:form>
 
-                            <div class="invoice-box" style="max-width: 800px;margin: auto;padding: 30px;border: 1px solid #eee;box-shadow: 0 0 10px rgba(0, 0, 0, .15);font-size: 16px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
-                                <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
+                            <div class="invoice-box" style="background:white; max-width: 800px;margin: auto;padding: 30px;border: 1px solid #eee;box-shadow: 0 0 10px rgba(0, 0, 0, .15);font-size: 16px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
+                                <table cellpadding="0" cellspacing="0" style="border: 0; width: 100%;line-height: inherit;text-align: left;">
                                     <tr class="top">
                                         <td colspan="3" style="padding: 5px;vertical-align: top;">
                                             <table style="width: 100%;line-height: inherit;text-align: left;">
                                                 <tr>
                                                     <td class="title" style="padding: 5px;vertical-align: top;padding-bottom: 20px;font-size: 45px;line-height: 45px;color: #333;">
-                                                        <img src="http://imar.rw/images/logo.png" style="width:50%; max-width:150px;"/>
+                                                        <img src="http://imar.rw/images/logo.png" style="width: 50%!important;
+                                                             max-width: 220px;
+                                                             border-radius: 0;
+                                                             height: 84px!important;"/>
                                                     </td>
 
                                                     <td class="title" style="padding: 5px;vertical-align: top;padding-bottom: 20px;font-size: 45px;line-height: 45px;color: #333;">
@@ -165,9 +178,9 @@
                                             <table style="width: 100%;line-height: inherit;text-align: left;">
                                                 <tr>
                                                     <td style="padding: 5px;vertical-align: top;padding-bottom: 40px;">
-                                                        #{market.order.business.name}.<br/>
-                                                        #{market.order.business.manager.phone}.<br/>
-                                                        #{market.order.business.tin}.
+                                                        <strong>#{market.order.business.name}.</strong><br/>
+                                                        <strong>Phone: </strong>#{market.order.business.manager.phone}<br/>
+                                                        <strong>TIN: </strong>#{market.order.business.tin}
                                                     </td>
 
                                                     <td style="padding: 5px;vertical-align: top;padding-bottom: 40px;">
@@ -175,9 +188,9 @@
                                                     </td>
 
                                                     <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 40px;">
-                                                        #{market.user1.businessName}.<br/>
-                                                        #{market.user1.managerOfBusiness.sector.parent.name}<br/>
-                                                        #{market.user1.managerOfBusiness.manager.email}
+                                                        <strong>#{market.user1.businessName}.<br/></strong>
+                                                        #{market.user1.username}<br/>
+                                                        #{market.user1.phone}
                                                     </td>
                                                 </tr>
                                             </table>
@@ -191,19 +204,17 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">Price/unit</f:facet>
-                                            #{product.price}
+                                            #{product.price+product.product.unit}
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">Quantity</f:facet>
                                             #{product.quantity}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header">Amount</f:facet>
+                                        <f:facet name="header">Price</f:facet>
                                             #{product.totalAmount()}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Supplier</f:facet>
-                                            #{product.product.business.name}
+                                        <f:facet name="footer">Price</f:facet>
+                                        <strong>#{market.totalOnInvoice()}</strong>
                                     </h:column>
                                 </h:dataTable>
                             </div>
