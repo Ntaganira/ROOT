@@ -28,8 +28,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span></button>
                     <a class="navbar-brand" href="/Market/client_dashboard.xhtml"><span>imar </span>group</a>
-                    
-                    
+
+
                 </div>
             </div><!-- /.container-fluid -->
         </nav>
@@ -65,7 +65,7 @@
                     <li class="">
                         <a href="client_new_order.xhtml"><em class="fa fa-ticket">&nbsp;</em> Make new Order</a>
                     </li>
-                      <li class="">
+                    <li class="">
                         <a href="client_profile.xhtml"><em class="fa fa-user">&nbsp;</em> My Profile</a>
                     </li>
                     <li>
@@ -136,28 +136,77 @@
                             <h:form>
                                 <h:commandLink action="#{market.printClientInvoice()}" style="float: right;" styleClass="btn btn-danger "><i class="fa fa-print"></i> Get Invoice</h:commandLink>
                             </h:form>
-                            <h:dataTable styleClass="table table-striped" value="#{market.orderProducts}" var="product">
-                                <h:column>
-                                    <f:facet name="header">Name</f:facet>
-                                        #{product.name}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Price/unit</f:facet>
-                                        #{product.price}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Quantity</f:facet>
-                                        #{product.quantity}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Amount</f:facet>
-                                        #{product.totalAmount()}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">Supplier</f:facet>
-                                        #{product.product.business.name}
-                                </h:column>
-                            </h:dataTable>
+
+                            <div class="invoice-box" style="max-width: 800px;margin: auto;padding: 30px;border: 1px solid #eee;box-shadow: 0 0 10px rgba(0, 0, 0, .15);font-size: 16px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
+                                <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
+                                    <tr class="top">
+                                        <td colspan="3" style="padding: 5px;vertical-align: top;">
+                                            <table style="width: 100%;line-height: inherit;text-align: left;">
+                                                <tr>
+                                                    <td class="title" style="padding: 5px;vertical-align: top;padding-bottom: 20px;font-size: 45px;line-height: 45px;color: #333;">
+                                                        <img src="http://imar.rw/images/logo.png" style="width:50%; max-width:150px;"/>
+                                                    </td>
+
+                                                    <td class="title" style="padding: 5px;vertical-align: top;padding-bottom: 20px;font-size: 45px;line-height: 45px;color: #333;">
+                                                    </td>
+
+                                                    <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 20px;">
+                                                        <h3>INVOICE</h3>
+                                                        Created: #{market.toorderdate()}<br/>
+                                                        Due: #{market.toorderdate()}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="information">
+                                        <td colspan="3" style="padding: 5px;vertical-align: top;">
+                                            <table style="width: 100%;line-height: inherit;text-align: left;">
+                                                <tr>
+                                                    <td style="padding: 5px;vertical-align: top;padding-bottom: 40px;">
+                                                        #{market.order.business.name}.<br/>
+                                                        #{market.order.business.manager.phone}.<br/>
+                                                        #{market.order.business.tin}.
+                                                    </td>
+
+                                                    <td style="padding: 5px;vertical-align: top;padding-bottom: 40px;">
+
+                                                    </td>
+
+                                                    <td style="padding: 5px;vertical-align: top;text-align: right;padding-bottom: 40px;">
+                                                        #{market.user1.businessName}.<br/>
+                                                        #{market.user1.managerOfBusiness.sector.parent.name}<br/>
+                                                        #{market.user1.managerOfBusiness.manager.email}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <h:dataTable styleClass="table table-striped" value="#{market.orderProducts}" var="product">
+                                    <h:column>
+                                        <f:facet name="header">Name</f:facet>
+                                            #{product.name}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Price/unit</f:facet>
+                                            #{product.price}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Quantity</f:facet>
+                                            #{product.quantity}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Amount</f:facet>
+                                            #{product.totalAmount()}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Supplier</f:facet>
+                                            #{product.product.business.name}
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
                         </div>
                     </div>
                 </div>
