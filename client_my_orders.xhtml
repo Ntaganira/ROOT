@@ -213,8 +213,8 @@
                                     <h:column>
                                         <f:facet name="header">Price</f:facet>
                                             #{product.totalAmount()}
-                                        <f:facet name="footer">Price</f:facet>
-                                        <strong>#{market.totalOnInvoice()}</strong>
+                                        <f:facet name="footer"></f:facet>
+                                        <strong>Total: #{market.totalOnInvoice()}</strong>
                                     </h:column>
                                 </h:dataTable>
                             </div>
