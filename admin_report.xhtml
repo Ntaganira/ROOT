@@ -142,7 +142,7 @@
                                     <div class="panel-body">
                                         <h:form>
                                             <h:selectOneMenu value="#{market.businessId}" class="form-control">
-                                                <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.id}"
+                                                <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.code}"
                                                                itemLabel="#{busines.name}"/>
                                             </h:selectOneMenu>
                                             <p:calendar value="#{market.startDate}" placeholder="Starting date"/><br/>
@@ -160,7 +160,7 @@
                                     <div class="panel-body">
                                         <h:form> 
                                             <h:selectOneMenu value="#{market.businessId}" class="form-control">
-                                                <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.id}"
+                                                <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.code}"
                                                                itemLabel="#{busines.name}"/>
                                             </h:selectOneMenu>
                                             <p:calendar value="#{market.startDate}" placeholder="Starting date"/><br/>
@@ -178,7 +178,7 @@
                                     <div class="panel-body">
                                         <h:form>
                                             <h:selectOneMenu value="#{market.businessId}" class="form-control">
-                                                <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.id}"
+                                                <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.code}"
                                                                itemLabel="#{busines.name}"/>
                                             </h:selectOneMenu>
                                             <h:commandLink value="print" action="#{market.bestClient()}" styleClass="btn btn-sm btn-danger"/>
@@ -194,7 +194,7 @@
                         <div class="panel-body">
                             <h:form>
                                 <h:selectOneMenu value="#{market.businessId}" class="form-control">
-                                    <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.id}"
+                                    <f:selectItems value="#{market.businesses}" var="busines" itemValue="#{busines.code}"
                                                    itemLabel="#{busines.name}"/>
                                 </h:selectOneMenu>
                                 <h:commandLink value="print" action="#{market.bestProductSold()}" styleClass="btn btn-sm btn-danger"/>
