@@ -118,8 +118,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3"><i class="fa fa-bullhorn" style="float: right; font-size: 28px;"></i></div>
-                            <div class="col-md-6"><marquee>Advertise Your Business at <i class="fa fa-envelope"></i>
-                                    imargroup@gmail.com</marquee></div>
+                            <div class="col-md-6"><marquee>iMAR Online System</marquee></div>
                             <div class="col-md-3"><i class="fa fa-newspaper-o" style="font-size: 26px;"></i></div>
                         </div>
                     </div>
@@ -128,22 +127,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-2"><img style="width: 100px; padding: 27px 0;" src="images/logo.png" alt="logo"/></div>
-                            <div class="col-md-6"><br/>
-                                <div class="search-box col-md-12">               
-                                    <h:form>
-                                        <div class="input-group mb-12">
-                                            <div class="input-group-prepend">
-                                                <label class="btn btn-light">Search: </label>
-                                            </div>
-                                            <h:inputText class="form-control" value="#{market.keySearch}"/>
-                                            <div class="input-group-append">
-                                                <h:commandLink action="#{market.indexSearchProducts()}" class="btn btn-success" type="button">Search</h:commandLink>
-                                            </div>
-                                        </div>
-                                    </h:form>
-                                </div>
-                                <br/>
-                            </div>
+                            <div class="col-md-6"></div>
                             <div class="col-md-4">
                                 <section class="customer-logos slider">
                                     <c:forEach var="item" items="#{advertismentModal.advertisments}">
@@ -163,24 +147,24 @@
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"> <i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link" href="index.xhtml"> <i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">About</a>
+                                    <a class="nav-link" href="about.xhtml">About</a>
                                 </li>
                                 <li class="nav-item dropdown dmenu">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                                         Our Service
                                     </a>
-                                    <div class="dropdown-menu sm-menu">
+                                    <!-- <div class="dropdown-menu sm-menu">
                                         <a class="dropdown-item" href="#">service2</a>
                                         <a class="dropdown-item" href="#">service 2</a>
                                         <a class="dropdown-item" href="#">service 3</a>
                                         <a class="dropdown-item" href="#">service 4</a>
-                                    </div>
+                                    </div> -->
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact Us</a>
+                                    <a class="nav-link" href="/contact.xhtml">Contact Us</a>
                                 </li>
                             </ul>
                             <div class="social-part">
@@ -227,35 +211,6 @@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="img/carousel-slider-1.jpg" class="d-block w-100" alt="..."/>
-                                <div class="carousel-caption text-left">
-                                    <h1 class="carousel-caption-header">About</h1>
-                                    <hr class="divider1 m-4" />
-                                    <p class="carousel-caption-text text-justify hidden-sm hidden-xs">
-                                        Imar Group Ltd is a based Information Technology company owned by Mr. Pascal KABAGEMA, a graduate in Information Technology from the Adventist University of Central Africa (AUCA).  The company is located at  Kisiment,, Gasabo District, Kigali City.                                    </p>
-                                    <a class="btn btn-light1 btn-bg js-scroll-trigger" href="#about">Read More <i class="fa fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carousel-slider-1.jpg" class="d-block w-100" alt="..."/>
-                                <div class="carousel-caption text-left">
-                                    <h1 class="carousel-caption-header">Mission</h1>
-                                    <hr class="divider1 m-4" />
-                                    <p class="carousel-caption-text text-justify hidden-sm hidden-xs">
-                                        As youth, we seek to find business solutions for different problems in trading.  We are concerned with facilitating wholesale (supplier) companies to sell their products easily and Retailer companies to easily purchase products from suppliers by ordering from different wholesalers (supplier).
-                                    </p>
-                                    <a class="btn btn-light1 btn-bg js-scroll-trigger" href="#about">Read More <i class="fa fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="img/carousel-slider-2.jpg" class="d-block w-100" alt="..."/>
-                                <div class="carousel-caption">
-                                    <h1 class="carousel-caption-header">Vision</h1>
-                                    <hr class="divider1 m-4" />
-                                    <p class="carousel-caption-text hidden-sm hidden-xs">
-                                        To become one of the leading companies in Rwanda that provides technological based solutions to the wider business community.
-                                    </p>
-                                    <a class="btn btn-light1 btn-bg js-scroll-trigger" href="#mission">Read More <i class="fa fa-angle-double-right"></i></a>
-                                </div>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
